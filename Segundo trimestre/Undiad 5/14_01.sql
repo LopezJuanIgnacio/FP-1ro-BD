@@ -1,30 +1,19 @@
-/*JOIN*/
-SELECT * FROM EMPLE EMP
-JOIN DEPT DEP
-ON EMP.DEPT_NO = DEP.DEPT_NO
-WHERE DEP.LOC = 'DALLAS';
--- INNER JOIN: Devuelve solo las filas que tienen coincidencias en ambas tablas.
-SELECT * FROM EMPLE EMP
-INNER JOIN DEPT DEP
-ON EMP.DEPT_NO = DEP.DEPT_NO
-WHERE DEP.LOC = 'DALLAS';
--- LEFT JOIN: Devuelve todas las filas de la tabla de la izquierda (EMPLE), y las filas coincidentes de la tabla de la derecha (DEPT). Si no hay coincidencia, los resultados de la tabla de la derecha serán NULL.
-SELECT * FROM EMPLE EMP
-LEFT JOIN DEPT DEP
-ON EMP.DEPT_NO = DEP.DEPT_NO
-WHERE DEP.LOC = 'DALLAS';
--- RIGHT JOIN: Devuelve todas las filas de la tabla de la derecha (DEPT), y las filas coincidentes de la tabla de la izquierda (EMPLE). Si no hay coincidencia, los resultados de la tabla de la izquierda serán NULL.
-SELECT * FROM EMPLE EMP
-RIGHT JOIN DEPT DEP
-ON EMP.DEPT_NO = DEP.DEPT_NO
-WHERE DEP.LOC = 'DALLAS';
--- FULL JOIN: Devuelve todas las filas cuando hay una coincidencia en una de las tablas. Devuelve NULL para las filas sin coincidencia en la otra tabla.
-SELECT * FROM EMPLE EMP
-FULL JOIN DEPT DEP
-ON EMP.DEPT_NO = DEP.DEPT_NO
-WHERE DEP.LOC = 'DALLAS';
--- NATURAL JOIN: Realiza un JOIN basado en todas las columnas con el mismo nombre y tipo en ambas tablas. No requiere una condición explícita ON.
-SELECT * FROM EMPLE EMP
-NATURAL JOIN DEPT DEP
-WHERE DEP.LOC = 'DALLAS';
+/*Funciones de agregacion*/
+SELECT COUNT(*) FROM EMPLE; /*Devuelve el número de filas de una tabla*/ /*14*/
+SELECT SUM(SALARIO) FROM EMPLE; /*Devuelve la suma de una columna*/ /*10875*/
+SELECT AVG(SALARIO) FROM EMPLE; /*Devuelve la media de una columna*/ /*776.7857142857143*/
+SELECT MAX(SALARIO) FROM EMPLE; /*Devuelve el valor máximo de una columna*/ /*2450*/
+SELECT MIN(SALARIO) FROM EMPLE; /*Devuelve el valor mínimo de una columna*/ /*800*/
+SELECT COUNT(DISTINCT DEPT_NO) FROM EMPLE; /*Devuelve el número de valores distintos de una columna*/ /*4*/
+SELECT STDDEV(SALARIO) FROM EMPLE; /*Devuelve la desviación estándar de una columna*/ /*667.6986786754765*/
+SELECT VARIANCE(SALARIO) FROM EMPLE; /*Devuelve la varianza de una columna*/ /*445.9183673469388*/
+SELECT GROUP_CONCAT(SALARIO) FROM EMPLE; /*Devuelve los valores de una columna concatenados*/ /*2450,1600,1250,2975,1250,2850,1500,1100,950,3000,800,1300,1500,950*/
+SELECT GROUP_CONCAT(SALARIO ORDER BY SALARIO) FROM EMPLE; /*Devuelve los valores de una columna concatenados y ordenados*/ /*800,950,950,1100,1250,1250,1300,1500,1500,1600,2450,2850,2975,3000*/
+SELECT GROUP_CONCAT(SALARIO SEPARATOR ' - ') FROM EMPLE; /*Devuelve los valores de una columna concatenados con un separador*/ /*2450 - 1600 - 1250 - 2975 - 1250 - 2850 - 1500 - 1100 - 950 - 3000 - 800 - 1300 - 1500 - 950*/
 
+/*GROUP BY*/
+SELECT DEPT_NO, COUNT(*) FROM EMPLE GROUP BY DEPT_NO; /*Devuelve el número de empleados por departamento*/
+/*HAVING*/
+SELECT DEPT_NO, COUNT(*) FROM EMPLE GROUP BY DEPT_NO HAVING COUNT(*) > 2; /*Devuelve el número de empleados por departamento que tengan más de 2 empleados*/
+/*WITH ROLLUP*/
+SELECT DEPT_NO, COUNT(*) FROM EMPLE GROUP BY DEPT_NO WITH ROLLUP; /*Devuelve el número de empleados por departamento y el total*/
