@@ -5,9 +5,9 @@ where not exists(select * from oficinas as o where o.Ciudad = c.Ciudad)
 select * from clientes as c
 where exists(select * from pagos as p where p.CodigoCliente = c.CodigoCliente)
 /*3*/
-select Ciudad, count(*) as cantidad from clientes
+select Ciudad, count(*) from clientes as c
+where not exists(select count(*) from clientes as c1 group by Ciudad having count(c.CodigoCliente) < count(c1.CodigoCliente))
 group by Ciudad
-having count(*) >=any(select count(*) from clientes group by Ciudad)
 /*4*/
-select * from productos
-where gama != 'Herramientas' and precioventa in (select precioventa from productos where gama = 'Herramientas')
+select * from productos as p1
+where p1.gama != 'Herramientas' and exists(select precioventa from productos as p2 where p2.gama = 'Herramientas' and p2.precioventa = p1.precioventa)
