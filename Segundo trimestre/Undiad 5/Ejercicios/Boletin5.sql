@@ -89,8 +89,3 @@ From Productos p
 Where NOT EXISTS(select * From Productos p1
 Where p.PrecioVenta=p1.PrecioVenta AND
 p.CodigoProducto<>p1.CodigoProducto)
-<<<<<<< HEAD
-dsaasdasd
-=======
-
->>>>>>> refs/remotes/origin/main
