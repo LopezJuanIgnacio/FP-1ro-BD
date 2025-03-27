@@ -20,8 +20,7 @@ values
         DEFAULT,
         '3897',
         'raul@jardineria.es',
-        '
-TAL-ES',
+        'TAL-ES',
         DEFAULT,
         DEFAULT
     ),
@@ -31,8 +30,7 @@ TAL-ES',
         'García',
         DEFAULT,
         '3897',
-        'maria@jardineria.es
-',
+        'maria@jardineria.es',
         'TAL-ES',
         DEFAULT,
         DEFAULT
